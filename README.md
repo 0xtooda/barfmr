@@ -31,4 +31,8 @@ Contributions related to **malware research, analysis, or defensive security ins
 ## License
 This project is provided for **research and educational purposes only**.
 
+
+## License
+This project is licensed under the MIT License for **research and educational purposes only**. See [LICENSE](LICENSE) for details.
+
 // 0xtooda
