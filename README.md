@@ -75,4 +75,4 @@ See [LICENSE](LICENSE) for details.
 - Academic papers, malware analysis reports, and safe testing resources.  
 - Publicly available C2 and RAT analysis frameworks for educational purposes.
 
-  // 0xtooda
+  // Kayc3
